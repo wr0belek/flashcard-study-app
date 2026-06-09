@@ -1,8 +1,8 @@
 import java.util.Scanner;
 public abstract class Question {
     Flashcard flashcard;
-    public abstract void display_question();
-    public boolean check_answer(Scanner scanner)
+    public abstract void displayQuestion();
+    public boolean checkAnswer(Scanner scanner)
     {
         return flashcard.isCorrent(scanner.nextLine());
     }

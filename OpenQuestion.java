@@ -3,7 +3,7 @@ public class OpenQuestion extends Question {
     {
         this.flashcard = f;
     }
-    public void display_question()
+    public void displayQuestion()
     {
         System.out.println(this.flashcard.getQuestion() + ":  ");
     }

@@ -15,7 +15,7 @@ public class ChoiceQuestion extends Question{
         else 
             this.order = 0;
     }
-    public void display_question()
+    public void displayQuestion()
     {
         System.out.println(this.flashcard.getQuestion() + ":  ");
         if(order == 1)

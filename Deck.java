@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-class FlashcardWithPref 
+class FlashcardWithPref
 {
     Flashcard flashcard;
     int prefix_sum;
@@ -15,12 +15,12 @@ public class Deck {
     ArrayList <FlashcardWithPref> cards;
     int sum = 0;
     Progress progress;
-    public void add_flashcard(Flashcard flashcard)
+    public void addFlashcard(Flashcard flashcard)
     {
         sum += flashcard.getWeight();
         cards.add(new FlashcardWithPref(flashcard, sum));
     }
-    public void update_progress(int points)
+    public void updateProgress(int points)
     {
         this.progress.improve(points);
     }
