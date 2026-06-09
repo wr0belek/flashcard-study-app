@@ -27,6 +27,14 @@ public class Flashcard
             System.out.println("Weight must be between 1 and 5. Setting weight to 1.");
         }
     }
+    public String getQuestion()
+    {
+        return this.question;
+    }
+    public String getAnswer()
+    {
+        return this.answer;
+    }
     public Boolean isCorrent(String users_answer)
     {
         return users_answer == answer;
