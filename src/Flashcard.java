@@ -1,8 +1,8 @@
 public class Flashcard
 {
-    String question;
-    String answer;
-    int weight;
+    private String question;
+    private String answer;
+    private int weight;
     Flashcard(String q, String a, int w)
     {
         this.question = q;

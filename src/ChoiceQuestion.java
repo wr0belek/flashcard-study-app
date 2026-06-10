@@ -1,7 +1,7 @@
 
 public class ChoiceQuestion extends Question{
-    Flashcard impostor;
-    int order;
+    private Flashcard impostor;
+    private int order;
     public ChoiceQuestion(Flashcard f, Flashcard i, int o)
     {
         this.flashcard = f;

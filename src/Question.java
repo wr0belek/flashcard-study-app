@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public abstract class Question {
-    Flashcard flashcard;
+    protected Flashcard flashcard;
     public abstract void displayQuestion();
     public boolean checkAnswer(Scanner scanner)
     {
