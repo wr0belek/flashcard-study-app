@@ -1,15 +1,21 @@
 import java.io.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 
 public class FileStorage {
-    private static final String filename = "library.ser";
+    private static final String filename = "library.json";
+    private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    
     public static Library readFromFile()
     {
+        
         File file = new File(filename);
         if(!file.exists())
             return null;
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename)))
+        try(FileReader reader = new FileReader(file))
         {
-            return (Library) ois.readObject();
+            return gson.fromJson(reader, Library.class);
         }
         catch(IOException exception)
         {
@@ -17,18 +23,12 @@ public class FileStorage {
             System.out.println("Cannot read from file " + filename);
             return null;
         }
-        catch(ClassNotFoundException exception)
-        {
-            System.out.println("Exception " + exception);
-            System.out.println("Class not found");
-            return null;
-        }
     }
-    public static void saveToFile(Library library)
+    public static void saveToFile(Library data)
     {
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename)))
+        try(FileWriter writer = new FileWriter(filename))
         {
-            oos.writeObject(library);
+            gson.toJson(data, writer);
             System.out.println("Your data is saved");
         }
         catch(IOException exception)
