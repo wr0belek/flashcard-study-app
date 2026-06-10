@@ -13,10 +13,15 @@ class FlashcardWithPref
 }
 
 public class Deck {
+    String name;
     ArrayList <FlashcardWithPref> cards;
     int sum = 0;
     Progress progress;
     Random rand = new Random();
+    public Deck(String name)
+    {
+        this.name = name;
+    }
     public void addFlashcard(Flashcard flashcard)
     {
         sum += flashcard.getWeight();
