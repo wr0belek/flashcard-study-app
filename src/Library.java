@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Library
 {
-    ArrayList<Deck> decks;
+    private ArrayList<Deck> decks;
     public ArrayList<Deck> getDecks()
     {
         return this.decks;

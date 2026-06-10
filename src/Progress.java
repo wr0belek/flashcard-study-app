@@ -1,6 +1,6 @@
 public class Progress {
-    int points = 0;
-    int level = 0;
+    private int points = 0;
+    private int level = 0;
     public void improve(int points)
     {
         this.points += points;

@@ -13,11 +13,11 @@ class FlashcardWithPref
 }
 
 public class Deck {
-    String name;
-    ArrayList <FlashcardWithPref> cards;
-    int sum = 0;
-    Progress progress;
-    Random rand = new Random();
+    private String name;
+    private ArrayList <FlashcardWithPref> cards;
+    private int sum = 0;
+    private Progress progress;
+    private Random rand = new Random();
     public Deck(String name)
     {
         this.name = name;
