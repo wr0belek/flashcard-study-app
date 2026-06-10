@@ -7,4 +7,12 @@ public class Progress {
         if((this.points >> 6)  >= (1 << level)) //level = max(0, log_2(points) - 5)
             level++;
     }
+    public int getLevel()
+    {
+        return this.level;
+    }
+    public int getPoints()
+    {
+        return this.points;
+    }
 }

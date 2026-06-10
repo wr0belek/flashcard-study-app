@@ -31,6 +31,14 @@ public class Deck {
     {
         this.progress.improve(points);
     }
+    public Progress getProgress()
+    {
+        return this.progress;
+    }
+    public String getName()
+    {
+        return this.name;
+    }
     private Flashcard findFlashcard(int index)
     {
         int beg = 0, end = this.cards.size(), mid;
