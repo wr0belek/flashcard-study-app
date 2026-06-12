@@ -11,8 +11,14 @@ public class Session {
         this.library = library;
     }
     private ArrayList<Deck> decks = library.getDecks();
+    private void cleanScreen()
+    {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
     public void showMenu()
     {
+        this.cleanScreen();
         System.out.println("~~~~ Study menu ~~~~");
         System.out.println("1. Practice: Normal challenge");
         System.out.println("2. Practice: Easy challenge");
@@ -35,6 +41,8 @@ public class Session {
         System.out.println("Enter a number from 1 to " + decks.size() + ".");
         chooseDeck(scanner.nextInt());
         System.out.println("We're learning " + current_deck.getName() + "!");
-
+        System.out.println("Press enter to continue.");
+        scanner.nextLine();
+        this.showMenu();
     }
 }
