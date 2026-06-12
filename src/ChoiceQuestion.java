@@ -4,7 +4,7 @@ public class ChoiceQuestion extends Question{
     private int order;
     public ChoiceQuestion(Flashcard f, Flashcard i, int o)
     {
-        this.flashcard = f;
+        this.setFlashcard(f);
         this.impostor = i;
         setOrder(o);
     }
@@ -17,16 +17,16 @@ public class ChoiceQuestion extends Question{
     }
     public void displayQuestion()
     {
-        System.out.println(this.flashcard.getQuestion() + ":  ");
+        System.out.println(this.getFlashcard().getQuestion() + ":  ");
         if(order == 1)
         {
-            System.out.println("a) " + flashcard.getAnswer());
+            System.out.println("a) " + this.getFlashcard().getAnswer());
             System.out.println("a) " + impostor.getAnswer());
         }
         else
         {
             System.out.println("a) " + impostor.getAnswer());
-            System.out.println("a) " + flashcard.getAnswer());
+            System.out.println("a) " + this.getFlashcard().getAnswer());
         }
     }
 }
