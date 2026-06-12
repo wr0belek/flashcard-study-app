@@ -35,6 +35,38 @@ public class Session {
     {
         this.current_deck = decks.get(index);
     }
+    public void askOpenQuestion()
+    {
+        // to implement
+    }
+    public void askChoiceQuestion()
+    {
+        // to implement
+    }
+    public void addFlashcard()
+    {
+        // to implement
+    }
+    public int action()
+    {
+        int action_type = scanner.nextInt();
+        switch (action_type) {
+            case 0:
+                FileStorage.saveToFile(library);
+                break;
+            case 1:
+                this.askOpenQuestion();
+                break;
+            case 2:
+                this.askChoiceQuestion();
+                break;
+            case 3:
+                this.addFlashcard();
+            default:
+                break;
+        }
+        return action_type;
+    }
     public void study()
     {
         System.out.println("Choose what you want to practice today.");
@@ -44,5 +76,9 @@ public class Session {
         System.out.println("Press enter to continue.");
         scanner.nextLine();
         this.showMenu();
+        int action_type;
+        do{
+            action_type = this.action();
+        }while (action_type != 0);
     }
 }
