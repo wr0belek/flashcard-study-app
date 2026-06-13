@@ -88,26 +88,27 @@ public class Session {
         switch (action_type) {
             case 0:
                 FileStorage.saveToFile(library);
+                scanner.nextLine();
                 break;
             case 1:
                 if(current_deck.getDeckSize() < 1)
                 {
                     System.out.println("You don't have enough cards. Add a flashcard first.");
                     System.out.println("Press enter to continue.");
-                    scanner.nextLine();
                 }
                 else
                     this.askOpenQuestion();
+                scanner.nextLine();
                 break;
             case 2:
                 if(current_deck.getDeckSize() < 2)
                 {
                     System.out.println("You don't have enough cards. Add a flashcard first.");
                     System.out.println("Press enter to continue.");
-                    scanner.nextLine();
                 }
                 else 
                     this.askChoiceQuestion();
+                scanner.nextLine();
                 break;
             case 3:
                 this.addFlashcard();

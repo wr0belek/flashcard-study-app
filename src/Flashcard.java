@@ -37,6 +37,6 @@ public class Flashcard
     }
     public Boolean isCorrent(String users_answer)
     {
-        return users_answer == answer;
+        return users_answer.equals(answer);
     }
 }
