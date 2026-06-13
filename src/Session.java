@@ -86,7 +86,7 @@ public class Session {
         System.out.println("Now enter the translation (back of the card).");
         String answer = this.scanner.nextLine();
         int weight;
-        System.out.println("How often should this word be asked? (1 - least frequently, 5 - most frequently)");
+        System.out.println("How often should this word be asked on a scale of 1 to 5? (1 - least frequently, 5 - most frequently)");
         do{
             weight = numberFromInput();
             if(weight < 1 || weight > 5)
