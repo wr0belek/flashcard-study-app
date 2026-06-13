@@ -1,14 +1,17 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Session {
     private Deck current_deck;
     private Library library;
     private Scanner scanner;
-    public Session(Scanner scanner, Library library)
+    private Random rand;
+    public Session(Scanner scanner, Library library, Random rand)
     {
         this.scanner = scanner;
         this.library = library;
+        this.rand = rand;
     }
     private ArrayList<Deck> decks = library.getDecks();
     private void cleanScreen()
@@ -37,11 +40,18 @@ public class Session {
     }
     public void askOpenQuestion()
     {
-        // to implement
+        Question question = new OpenQuestion(current_deck.randFlashcard());
+        question.displayQuestion();
+        question.checkAnswer(scanner);
+
     }
     public void askChoiceQuestion()
     {
-        // to implement
+        Flashcard main_flashcard = current_deck.randFlashcard();
+        int order = rand.nextInt(2);
+        Question question = new ChoiceQuestion(main_flashcard, current_deck.randOtherFlashcard(main_flashcard), order);
+        question.displayQuestion();
+        question.checkAnswer(scanner);
     }
     public void addFlashcard()
     {
