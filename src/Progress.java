@@ -5,7 +5,10 @@ public class Progress {
     {
         this.points += points;
         if((this.points >> 6)  >= (1 << level)) //level = max(0, log_2(points) - 5)
+        {
             level++;
+            System.out.println("Congratulations! You've reached level " + level + "!");
+        }
     }
     public int getLevel()
     {
