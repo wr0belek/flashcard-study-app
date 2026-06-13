@@ -7,6 +7,7 @@ public class ChoiceQuestion extends Question{
         this.setFlashcard(f);
         this.impostor = i;
         setOrder(o);
+        setPoints(1);
     }
     public void setOrder(int o)
     {
