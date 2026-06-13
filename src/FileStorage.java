@@ -11,7 +11,6 @@ public class FileStorage {
     {
         
         File file = new File(filename);
-        System.out.println(file);
         if(!file.exists()){
             System.out.println("No saved data found. Creating an empty library.");
             return new Library();
@@ -34,6 +33,7 @@ public class FileStorage {
     }
     public static void saveToFile(Library data)
     {
+        System.out.println("Saving data...");
         try(FileWriter writer = new FileWriter(filename))
         {
             gson.toJson(data, writer);
