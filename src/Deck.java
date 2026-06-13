@@ -17,13 +17,16 @@ public class Deck {
     private ArrayList <FlashcardWithPref> cards;
     private int sum = 0;
     private Progress progress;
-    private Random rand;
+    private transient Random rand;
     public Deck(String name)
     {
         this.name = name;
         cards = new ArrayList<>();
         progress = new Progress();
-        rand = new Random();
+        setRand(new Random());
+    }
+    public void setRand(Random rand){
+        this.rand = rand;
     }
     public void addFlashcard(Flashcard flashcard)
     {
@@ -57,15 +60,15 @@ public class Deck {
     }
     public Flashcard randFlashcard()
     {
-        int n = rand.nextInt(sum + 1);
+        int n = rand.nextInt(sum);
         return findFlashcard(n);
     }
     public Flashcard randOtherFlashcard(Flashcard flashcard)
     {
         Flashcard drawed_flashcard;
         do{
-            int n = rand.nextInt(sum + 1);
-            drawed_flashcard = findFlashcard(n);
+            int index = rand.nextInt(0, cards.size());
+            drawed_flashcard = this.cards.get(index).flashcard;
         } while(flashcard.equals(drawed_flashcard));
         return drawed_flashcard;
     }
