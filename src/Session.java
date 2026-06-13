@@ -45,7 +45,18 @@ public class Session {
     }
     public void addFlashcard()
     {
-        // to implement
+        System.out.println("First, enter the word in your language (front of the card).");
+        String question = this.scanner.nextLine();
+        System.out.println("Now enter the translation (back of the card).");
+        String answer = this.scanner.nextLine();
+        int weight;
+        do{
+            System.out.println("How often should this word be asked? (1 - least frequently, 5 - most frequently)");
+            weight = Integer.parseInt(this.scanner.nextLine());
+            if(weight < 1 || weight > 5)
+                System.out.println("The value is not between 1 and 5. Enter a number again (1-5).");
+        }while(weight < 1 || weight > 5);
+        current_deck.addFlashcard(new Flashcard(question, answer, weight));
     }
     public int action()
     {
@@ -71,7 +82,7 @@ public class Session {
     {
         System.out.println("Choose what you want to practice today.");
         System.out.println("Enter a number from 1 to " + decks.size() + ".");
-        chooseDeck(scanner.nextInt());
+        chooseDeck(Integer.parseInt(this.scanner.nextLine()));
         System.out.println("We're learning " + current_deck.getName() + "!");
         System.out.println("Press enter to continue.");
         scanner.nextLine();
