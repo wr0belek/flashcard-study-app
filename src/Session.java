@@ -40,6 +40,16 @@ public class Session {
     {
         this.current_deck = decks.get(index);
     }
+    private int numberFromInput()
+    {
+        try{
+            return Integer.parseInt(scanner.nextLine());
+        }
+        catch(NumberFormatException e)
+        {
+            return -1;
+        }
+    }
     public void askOpenQuestion()
     {
         Flashcard flashcard = current_deck.randFlashcard();
@@ -76,7 +86,7 @@ public class Session {
         int weight;
         System.out.println("How often should this word be asked? (1 - least frequently, 5 - most frequently)");
         do{
-            weight = Integer.parseInt(this.scanner.nextLine());
+            weight = numberFromInput();
             if(weight < 1 || weight > 5)
                 System.out.println("The value is not between 1 and 5. Enter a number again (1-5).");
         }while(weight < 1 || weight > 5);
@@ -84,7 +94,7 @@ public class Session {
     }
     public int action()
     {
-        int action_type = Integer.parseInt(this.scanner.nextLine());
+        int action_type  = numberFromInput();
         switch (action_type) {
             case 0:
                 FileStorage.saveToFile(library);
@@ -112,7 +122,10 @@ public class Session {
                 break;
             case 3:
                 this.addFlashcard();
+                break;
             default:
+                System.out.println("Incorrect input. Press enter to continue.");
+                scanner.nextLine();
                 break;
         }
         return action_type;
@@ -124,15 +137,29 @@ public class Session {
         this.decks = library.getDecks();
         System.out.println("Number of decks: " + decks.size());
     }
-    public void study()
+    public void start()
     {
-        System.out.println("Choose what you want to practice today.");
-        showDecks();
-        System.out.println("Enter a number from 1 to " + (decks.size() + 1) + ".");
-        int chosen = Integer.parseInt(this.scanner.nextLine());
+        int chosen = -1;
+        while(chosen == -1)
+        {
+            System.out.println("Choose what you want to practice today.");
+            showDecks();
+            System.out.println("Enter a number from 1 to " + (decks.size() + 1) + ".");
+            chosen = numberFromInput();
+            if(chosen == -1)
+            {
+                System.out.println("Incorrect input.");
+                scanner.nextLine();
+            }
+            cleanScreen();
+        }
         if(chosen == decks.size() + 1)
             this.addNewDeck();
         chooseDeck(chosen - 1);
+    }
+    public void study()
+    {
+        start();
         System.out.println("We're learning " + current_deck.getName() + "!");
         System.out.println("Press enter to continue.");
         scanner.nextLine();
