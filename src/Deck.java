@@ -57,4 +57,13 @@ public class Deck {
         int n = rand.nextInt(2);
         return findFlashcard(n);
     }
+    public Flashcard randOtherFlashcard(Flashcard flashcard)
+    {
+        Flashcard drawed_flashcard;
+        do{
+            int n = rand.nextInt(2);
+            drawed_flashcard = findFlashcard(n);
+        } while(flashcard.equals(drawed_flashcard));
+        return drawed_flashcard;
+    }
 }
