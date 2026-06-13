@@ -18,7 +18,11 @@ public class FileStorage {
         try(FileReader reader = new FileReader(file))
         {
             System.out.println("Importing data...");
-            return gson.fromJson(reader, Library.class);
+            Library library = gson.fromJson(reader, Library.class);
+            if(library == null)
+                return new Library();
+            else 
+                return library;
         }
         catch(IOException exception)
         {
