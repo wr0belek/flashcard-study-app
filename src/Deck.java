@@ -17,10 +17,13 @@ public class Deck {
     private ArrayList <FlashcardWithPref> cards;
     private int sum = 0;
     private Progress progress;
-    private Random rand = new Random();
+    private Random rand;
     public Deck(String name)
     {
         this.name = name;
+        cards = new ArrayList<>();
+        progress = new Progress();
+        rand = new Random();
     }
     public void addFlashcard(Flashcard flashcard)
     {
@@ -45,7 +48,7 @@ public class Deck {
         while(beg < end - 1)
         {
             mid = (beg + end) >> 1;
-            if(this.cards.get(mid).prefix_sum >= index)
+            if(this.cards.get(mid).prefix_sum > index)
                 beg = mid;
             else 
                 end = mid;
@@ -54,16 +57,20 @@ public class Deck {
     }
     public Flashcard randFlashcard()
     {
-        int n = rand.nextInt(2);
+        int n = rand.nextInt(sum + 1);
         return findFlashcard(n);
     }
     public Flashcard randOtherFlashcard(Flashcard flashcard)
     {
         Flashcard drawed_flashcard;
         do{
-            int n = rand.nextInt(2);
+            int n = rand.nextInt(sum + 1);
             drawed_flashcard = findFlashcard(n);
         } while(flashcard.equals(drawed_flashcard));
         return drawed_flashcard;
+    }
+    public int getDeckSize()
+    {
+        return cards.size();
     }
 }

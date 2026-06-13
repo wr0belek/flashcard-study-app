@@ -62,8 +62,8 @@ public class Session {
         System.out.println("Now enter the translation (back of the card).");
         String answer = this.scanner.nextLine();
         int weight;
+        System.out.println("How often should this word be asked? (1 - least frequently, 5 - most frequently)");
         do{
-            System.out.println("How often should this word be asked? (1 - least frequently, 5 - most frequently)");
             weight = Integer.parseInt(this.scanner.nextLine());
             if(weight < 1 || weight > 5)
                 System.out.println("The value is not between 1 and 5. Enter a number again (1-5).");
@@ -72,16 +72,30 @@ public class Session {
     }
     public int action()
     {
-        int action_type = scanner.nextInt();
+        int action_type = Integer.parseInt(this.scanner.nextLine());
         switch (action_type) {
             case 0:
                 FileStorage.saveToFile(library);
                 break;
             case 1:
-                this.askOpenQuestion();
+                if(current_deck.getDeckSize() < 1)
+                {
+                    System.out.println("You don't have enough cards. Add a flashcard first.");
+                    System.out.println("Press enter to continue.");
+                    scanner.nextLine();
+                }
+                else
+                    this.askOpenQuestion();
                 break;
             case 2:
-                this.askChoiceQuestion();
+                if(current_deck.getDeckSize() < 2)
+                {
+                    System.out.println("You don't have enough cards. Add a flashcard first.");
+                    System.out.println("Press enter to continue.");
+                    scanner.nextLine();
+                }
+                else 
+                    this.askChoiceQuestion();
                 break;
             case 3:
                 this.addFlashcard();
@@ -109,9 +123,9 @@ public class Session {
         System.out.println("We're learning " + current_deck.getName() + "!");
         System.out.println("Press enter to continue.");
         scanner.nextLine();
-        this.showMenu();
         int action_type;
         do{
+            this.showMenu();
             action_type = this.action();
         }while (action_type != 0);
         cleanScreen();
