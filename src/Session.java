@@ -39,6 +39,8 @@ public class Session {
     public void chooseDeck(int index)
     {
         this.current_deck = decks.get(index);
+        current_deck.setRand(rand);
+        decks.set(index, current_deck);
     }
     private int numberFromInput()
     {
@@ -79,7 +81,7 @@ public class Session {
     }
     public void addFlashcard()
     {
-        System.out.println("First, enter the word in your language (front of the card).");
+        System.out.println("First, enter the word in your native language (front of the card).");
         String question = this.scanner.nextLine();
         System.out.println("Now enter the translation (back of the card).");
         String answer = this.scanner.nextLine();
@@ -92,11 +94,13 @@ public class Session {
         }while(weight < 1 || weight > 5);
         current_deck.addFlashcard(new Flashcard(question, answer, weight));
     }
-    public int action()
+    public int action(int deck_index)
     {
         int action_type  = numberFromInput();
         switch (action_type) {
             case 0:
+                decks.set(deck_index, current_deck);
+                library.setDecks(decks);
                 FileStorage.saveToFile(library);
                 scanner.nextLine();
                 break;
@@ -137,7 +141,7 @@ public class Session {
         this.decks = library.getDecks();
         System.out.println("Number of decks: " + decks.size());
     }
-    public void start()
+    public int start()
     {
         int chosen = -1;
         while(chosen == -1)
@@ -156,17 +160,18 @@ public class Session {
         if(chosen == decks.size() + 1)
             this.addNewDeck();
         chooseDeck(chosen - 1);
+        return chosen - 1;
     }
     public void study()
     {
-        start();
+        int deck_index = start();
         System.out.println("We're learning " + current_deck.getName() + "!");
         System.out.println("Press enter to continue.");
         scanner.nextLine();
         int action_type;
         do{
             this.showMenu();
-            action_type = this.action();
+            action_type = this.action(deck_index);
         }while (action_type != 0);
         cleanScreen();
         System.out.println("~~~~ Goodbye! ~~~~");

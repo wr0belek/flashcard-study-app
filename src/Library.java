@@ -6,6 +6,10 @@ public class Library
     {
         return this.decks;
     }
+    public void setDecks(ArrayList<Deck> decks)
+    {
+        this.decks = decks;
+    }
     public void addDeck(String name)
     {
         Deck new_deck = new Deck(name);
