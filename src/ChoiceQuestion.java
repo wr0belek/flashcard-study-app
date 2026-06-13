@@ -21,12 +21,12 @@ public class ChoiceQuestion extends Question{
         if(order == 1)
         {
             System.out.println("a) " + this.getFlashcard().getAnswer());
-            System.out.println("a) " + impostor.getAnswer());
+            System.out.println("b) " + impostor.getAnswer());
         }
         else
         {
             System.out.println("a) " + impostor.getAnswer());
-            System.out.println("a) " + this.getFlashcard().getAnswer());
+            System.out.println("b) " + this.getFlashcard().getAnswer());
         }
     }
 }
