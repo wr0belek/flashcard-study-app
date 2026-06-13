@@ -51,7 +51,7 @@ public class Deck {
         while(beg < end - 1)
         {
             mid = (beg + end) >> 1;
-            if(this.cards.get(mid).prefix_sum > index)
+            if(this.cards.get(mid).prefix_sum <= index)
                 beg = mid;
             else 
                 end = mid;
