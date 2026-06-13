@@ -42,10 +42,16 @@ public class Session {
     }
     public void askOpenQuestion()
     {
-        Question question = new OpenQuestion(current_deck.randFlashcard());
+        Flashcard flashcard = current_deck.randFlashcard();
+        Question question = new OpenQuestion(flashcard);
         question.displayQuestion();
-        question.checkAnswer(scanner);
-
+        if(question.checkAnswer(scanner))
+        {
+            System.out.println("Correct!");
+            current_deck.updateProgress(2);
+        }
+        else
+            System.out.println("Oops! The correct answer is " + flashcard.getAnswer());
     }
     public void askChoiceQuestion()
     {
@@ -53,7 +59,13 @@ public class Session {
         int order = rand.nextInt(2);
         Question question = new ChoiceQuestion(main_flashcard, current_deck.randOtherFlashcard(main_flashcard), order);
         question.displayQuestion();
-        question.checkAnswer(scanner);
+        if(question.checkAnswer(scanner))
+        {
+            System.out.println("Correct!");
+            current_deck.updateProgress(1);
+        }
+        else
+            System.out.println("Oops! The correct answer is " + main_flashcard.getAnswer());
     }
     public void addFlashcard()
     {
