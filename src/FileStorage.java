@@ -11,8 +11,10 @@ public class FileStorage {
     {
         
         File file = new File(filename);
-        if(!file.exists())
-            return null;
+        if(!file.exists()){
+            System.out.println("No saved data found. Creating an empty library.");
+            return new Library();
+        }
         try(FileReader reader = new FileReader(file))
         {
             return gson.fromJson(reader, Library.class);
@@ -21,7 +23,7 @@ public class FileStorage {
         {
             System.out.println("Exception " + exception);
             System.out.println("Cannot read from file " + filename);
-            return null;
+            return new Library();
         }
     }
     public static void saveToFile(Library data)

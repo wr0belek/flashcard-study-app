@@ -7,13 +7,14 @@ public class Session {
     private Library library;
     private Scanner scanner;
     private Random rand;
+    private ArrayList<Deck> decks;
     public Session(Scanner scanner, Library library, Random rand)
     {
         this.scanner = scanner;
         this.library = library;
         this.rand = rand;
+        this.decks = library.getDecks();
     }
-    private ArrayList<Deck> decks = library.getDecks();
     private void cleanScreen()
     {
         System.out.print("\033[H\033[2J");
@@ -93,14 +94,16 @@ public class Session {
     {
         System.out.println("Name the deck.");
         library.addDeck(this.scanner.nextLine());
+        this.decks = library.getDecks();
+        System.out.println("Number of decks: " + decks.size());
     }
     public void study()
     {
         System.out.println("Choose what you want to practice today.");
         showDecks();
-        System.out.println("Enter a number from 1 to " + decks.size() + ".");
+        System.out.println("Enter a number from 1 to " + (decks.size() + 1) + ".");
         int chosen = Integer.parseInt(this.scanner.nextLine());
-        if(chosen == 0)
+        if(chosen == decks.size() + 1)
             this.addNewDeck();
         chooseDeck(chosen - 1);
         System.out.println("We're learning " + current_deck.getName() + "!");
