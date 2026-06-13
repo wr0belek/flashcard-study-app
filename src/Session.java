@@ -48,7 +48,7 @@ public class Session {
         if(question.checkAnswer(scanner))
         {
             System.out.println("Correct!");
-            current_deck.updateProgress(2);
+            current_deck.updateProgress(question.getPoints());
         }
         else
             System.out.println("Oops! The correct answer is " + flashcard.getAnswer());
@@ -62,7 +62,7 @@ public class Session {
         if(question.checkAnswer(scanner))
         {
             System.out.println("Correct!");
-            current_deck.updateProgress(1);
+            current_deck.updateProgress(question.getPoints());
         }
         else
             System.out.println("Oops! The correct answer is " + main_flashcard.getAnswer());
