@@ -32,7 +32,8 @@ public class Session {
     {
         System.out.println("Your practice decks:");
         for(int i = 0; i < decks.size(); i++)
-            System.out.println(i + ". " + decks.get(i).getName());
+            System.out.println((i+1) + ". " + decks.get(i).getName());
+        System.out.println((decks.size() + 1) + ". Add a new deck");
     }
     public void chooseDeck(int index)
     {
@@ -88,11 +89,20 @@ public class Session {
         }
         return action_type;
     }
+    public void addNewDeck()
+    {
+        System.out.println("Name the deck.");
+        library.addDeck(this.scanner.nextLine());
+    }
     public void study()
     {
         System.out.println("Choose what you want to practice today.");
+        showDecks();
         System.out.println("Enter a number from 1 to " + decks.size() + ".");
-        chooseDeck(Integer.parseInt(this.scanner.nextLine()));
+        int chosen = Integer.parseInt(this.scanner.nextLine());
+        if(chosen == 0)
+            this.addNewDeck();
+        chooseDeck(chosen - 1);
         System.out.println("We're learning " + current_deck.getName() + "!");
         System.out.println("Press enter to continue.");
         scanner.nextLine();
@@ -101,5 +111,7 @@ public class Session {
         do{
             action_type = this.action();
         }while (action_type != 0);
+        cleanScreen();
+        System.out.println("~~~~ Goodbye! ~~~~");
     }
 }
