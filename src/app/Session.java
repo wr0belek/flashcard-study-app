@@ -1,6 +1,9 @@
+package app;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
+import questions.*;
+import model.*;
 
 public class Session {
     private Deck current_deck;

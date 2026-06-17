@@ -1,3 +1,6 @@
+package questions;
+import model.Flashcard;
+
 public class OpenQuestion extends Question {
     public OpenQuestion(Flashcard f)
     {

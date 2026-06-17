@@ -1,3 +1,5 @@
+package model;
+
 public class Progress {
     private int points = 0;
     private int level = 0;

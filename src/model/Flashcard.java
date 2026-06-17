@@ -1,9 +1,11 @@
+package model;
+
 public class Flashcard
 {
     private String question;
     private String answer;
     private int weight;
-    Flashcard(String q, String a, int w)
+    public Flashcard(String q, String a, int w)
     {
         this.question = q;
         this.answer = a;

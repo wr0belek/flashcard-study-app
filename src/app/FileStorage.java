@@ -1,7 +1,8 @@
+package app;
 import java.io.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+import model.Library;
 
 public class FileStorage {
     private static final String filename = "library.json";

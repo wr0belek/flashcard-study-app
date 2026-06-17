@@ -1,7 +1,10 @@
+package questions;
 import java.util.Scanner;
+import model.Flashcard;
+
 public abstract class Question {
-    private Flashcard flashcard;
-    private int points;
+    protected Flashcard flashcard;
+    protected int points;
     public abstract void displayQuestion();
     public Flashcard getFlashcard()
     {

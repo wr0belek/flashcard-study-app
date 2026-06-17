@@ -1,3 +1,5 @@
+package questions;
+import model.Flashcard;
 
 public class ChoiceQuestion extends Question{
     private Flashcard impostor;
@@ -21,13 +23,13 @@ public class ChoiceQuestion extends Question{
         System.out.println(this.getFlashcard().getQuestion() + ":  ");
         if(order == 1)
         {
-            System.out.println("a) " + this.getFlashcard().getAnswer());
-            System.out.println("b) " + impostor.getAnswer());
+            System.out.println("a) " + this.flashcard.getAnswer());
+            System.out.println("b) " + this.impostor.getAnswer());
         }
         else
         {
-            System.out.println("a) " + impostor.getAnswer());
-            System.out.println("b) " + this.getFlashcard().getAnswer());
+            System.out.println("a) " + this.impostor.getAnswer());
+            System.out.println("b) " + this.flashcard.getAnswer());
         }
     }
 }

@@ -1,4 +1,6 @@
+package model;
 import java.util.ArrayList;
+
 public class Library
 {
     private ArrayList<Deck> decks = new ArrayList<>();
