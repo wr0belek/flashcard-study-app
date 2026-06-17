@@ -29,7 +29,8 @@ public class Session {
         System.out.println("~~~~ Study menu ~~~~");
         System.out.println("1. Practice: Normal challenge");
         System.out.println("2. Practice: Easy challenge");
-        System.out.println("3. Add a flashcard");
+        System.out.println("3. Practice: Random challenge");
+        System.out.println("4. Add a flashcard");
         System.out.println("0. Save your progress and exit");
     }
     public void showDecks()
@@ -55,11 +56,8 @@ public class Session {
             return -1;
         }
     }
-    public void askOpenQuestion()
+    private void displayResult(Question question, Flashcard flashcard)
     {
-        Flashcard flashcard = current_deck.randFlashcard();
-        Question question = new OpenQuestion(flashcard);
-        question.displayQuestion();
         if(question.checkAnswer(scanner))
         {
             System.out.println("Correct!");
@@ -68,19 +66,32 @@ public class Session {
         else
             System.out.println("Oops! The correct answer is " + flashcard.getAnswer());
     }
+    public void askOpenQuestion()
+    {
+        Flashcard flashcard = current_deck.randFlashcard();
+        Question question = new OpenQuestion(flashcard);
+        question.displayQuestion();
+        this.displayResult(question, flashcard);
+    }
     public void askChoiceQuestion()
     {
         Flashcard main_flashcard = current_deck.randFlashcard();
         int order = rand.nextInt(2);
         Question question = new ChoiceQuestion(main_flashcard, current_deck.randOtherFlashcard(main_flashcard), order);
         question.displayQuestion();
-        if(question.checkAnswer(scanner))
-        {
-            System.out.println("Correct!");
-            current_deck.updateProgress(question.getPoints());
-        }
-        else
-            System.out.println("Oops! The correct answer is " + main_flashcard.getAnswer());
+        this.displayResult(question, main_flashcard);
+    }
+    public void askRandomQuestion()
+    {
+        int r = rand.nextInt(2);
+        Flashcard flashcard = current_deck.randFlashcard();
+        Question question;
+        if(r == 1)
+            question = new OpenQuestion(flashcard);
+        else 
+            question = new ChoiceQuestion(flashcard, current_deck.randOtherFlashcard(flashcard), rand.nextInt(2));
+        question.displayQuestion();
+        this.displayResult(question, flashcard);
     }
     public void addFlashcard()
     {
@@ -128,6 +139,16 @@ public class Session {
                 scanner.nextLine();
                 break;
             case 3:
+                if(current_deck.getDeckSize() < 2)
+                {
+                    System.out.println("You don't have enough cards. Add a flashcard first.");
+                    System.out.println("Press enter to continue.");
+                }
+                else 
+                    this.askRandomQuestion();
+                scanner.nextLine();
+                break;
+            case 4:
                 this.addFlashcard();
                 break;
             default:
