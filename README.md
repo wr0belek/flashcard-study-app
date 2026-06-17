@@ -24,7 +24,7 @@ A simple app to help you learn a language with flashcards. Add your words and re
 * Write in terminal:
 ```javac -cp "lib/gson-2.11.0.jar" src/app/*.java src/model/*.java src/questions/*.java -d bin```
 * and then 
-  - Linux:
-```java -cp "bin;lib/gson-2.11.0.jar" app.Main```
-  -  Windows: 
+  - on Linux:
+```java -cp "bin:lib/gson-2.11.0.jar" app.Main```
+  -  on Windows: 
 ```java -cp "bin;lib/gson-2.11.0.jar" app.Main```
