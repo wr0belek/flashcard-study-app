@@ -116,6 +116,7 @@ public class Session {
                 decks.set(deck_index, current_deck);
                 library.setDecks(decks);
                 FileStorage.saveToFile(library);
+                System.out.println("Press enter to exit.");
                 scanner.nextLine();
                 break;
             case 1:
@@ -150,6 +151,8 @@ public class Session {
                 break;
             case 4:
                 this.addFlashcard();
+                System.out.println("Flashcard added. Press enter to continue.");
+                scanner.nextLine();
                 break;
             default:
                 System.out.println("Incorrect input. Press enter to continue.");
@@ -198,6 +201,6 @@ public class Session {
             action_type = this.action(deck_index);
         }while (action_type != 0);
         cleanScreen();
-        System.out.println("~~~~ Goodbye! ~~~~");
+        System.out.println("~~~~ Goodbye! ~~~~\n");
     }
 }
