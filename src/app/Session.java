@@ -23,7 +23,7 @@ public class Session {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-    public void showMenu()
+    private void showMenu()
     {
         this.cleanScreen();
         System.out.println("~~~~ Study menu ~~~~");
@@ -33,14 +33,14 @@ public class Session {
         System.out.println("4. Add a flashcard");
         System.out.println("0. Save your progress and exit");
     }
-    public void showDecks()
+    private void showDecks()
     {
         System.out.println("Your practice decks:");
         for(int i = 0; i < decks.size(); i++)
             System.out.println((i+1) + ". " + decks.get(i).getName());
         System.out.println((decks.size() + 1) + ". Add a new deck");
     }
-    public void chooseDeck(int index)
+    private void chooseDeck(int index)
     {
         this.current_deck = decks.get(index);
         current_deck.setRand(rand);
@@ -66,14 +66,14 @@ public class Session {
         else
             System.out.println("Oops! The correct answer is " + flashcard.getAnswer());
     }
-    public void askOpenQuestion()
+    private void askOpenQuestion()
     {
         Flashcard flashcard = current_deck.randFlashcard();
         Question question = new OpenQuestion(flashcard);
         question.displayQuestion();
         this.displayResult(question, flashcard);
     }
-    public void askChoiceQuestion()
+    private void askChoiceQuestion()
     {
         Flashcard main_flashcard = current_deck.randFlashcard();
         int order = rand.nextInt(2);
@@ -81,7 +81,7 @@ public class Session {
         question.displayQuestion();
         this.displayResult(question, main_flashcard);
     }
-    public void askRandomQuestion()
+    private void askRandomQuestion()
     {
         int r = rand.nextInt(2);
         Flashcard flashcard = current_deck.randFlashcard();
@@ -93,7 +93,7 @@ public class Session {
         question.displayQuestion();
         this.displayResult(question, flashcard);
     }
-    public void addFlashcard()
+    private void addFlashcard()
     {
         System.out.println("First, enter the word in your native language (front of the card).");
         String question = this.scanner.nextLine();
@@ -108,7 +108,7 @@ public class Session {
         }while(weight < 1 || weight > 5);
         current_deck.addFlashcard(new Flashcard(question, answer, weight));
     }
-    public int action(int deck_index)
+    private int action(int deck_index)
     {
         int action_type  = numberFromInput();
         switch (action_type) {
@@ -161,7 +161,7 @@ public class Session {
         }
         return action_type;
     }
-    public void addNewDeck()
+    private void addNewDeck()
     {
         System.out.println("Name the deck.");
         library.addDeck(this.scanner.nextLine());
