@@ -193,6 +193,7 @@ public class Session {
     {
         int deck_index = start();
         System.out.println("We're learning " + current_deck.getName() + "!");
+        System.out.println("Your level in " + current_deck.getName() + " is " + current_deck.getProgress().getLevel() + ".");
         System.out.println("Press enter to continue.");
         scanner.nextLine();
         int action_type;
